@@ -39,7 +39,7 @@ module exe(
 			    reg_we_o = `WRITE_DISABLE;
                         end//default
                     endcase
-		end
+                end
                 default:begin
                         reg_waddr_o = `ZERO_REG;
                         reg_wdata_o = `ZERO;

@@ -26,9 +26,11 @@ module rom
         begin
             reg [`ADDR_WIDTH-1:0] t_addr;
             t_addr = byte_addr - `MEM_OFFSET;
+            /* verilator lint_off UNSIGNED */
             if (byte_addr >= `MEM_OFFSET &&  byte_addr < `MEM_OFFSET + `MEM_SIZE) begin
                 mem[t_addr[`PART_ADDR_WIDTH-1:0]] = val;
             end
+            /* verilator lint_on UNSIGNED */
         end
     endtask    
 endmodule

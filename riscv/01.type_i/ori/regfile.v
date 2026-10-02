@@ -42,6 +42,7 @@ module regfile(
         if (raddr1_i == `ZERO_REG) begin
             rdata1_o = `ZERO;
         end else if (raddr1_i == waddr_i && we_i == `WRITE_ENABLE && re1_i == `READ_ENABLE) begin
+            rdata1_o = wdata_i;
         end else if (re1_i == `READ_ENABLE) begin
             rdata1_o = regs[raddr1_i];
         end else begin

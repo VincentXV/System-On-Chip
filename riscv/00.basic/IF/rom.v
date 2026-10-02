@@ -4,7 +4,9 @@ module rom
     (
         input wire clk_i,
         input wire ce_i,
+        /* verilator lint_off UNUSEDSIGNAL */
         input wire[`ADDR_WIDTH-1:0] addr_i,
+        /* verilator lint_on UNUSEDSIGNAL */
         output reg[`DATA_WIDTH-1:0] inst_o
     );
 
@@ -24,11 +26,16 @@ module rom
         input integer byte_addr;
         input [7:0] val;
         begin
+            /* verilator lint_off UNUSEDSIGNAL */
             reg [`ADDR_WIDTH-1:0] t_addr;
+            /* verilator lint_on UNUSEDSIGNAL */
             t_addr = byte_addr - `MEM_OFFSET;
+
+            /* verilator lint_off UNSIGNED */
             if (byte_addr >= `MEM_OFFSET &&  byte_addr < `MEM_OFFSET + `MEM_SIZE) begin
                 mem[t_addr[`PART_ADDR_WIDTH-1:0]] = val;
             end
+            /* verilator lint_on UNSIGNED */
         end
     endtask    
 endmodule
